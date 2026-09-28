@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="description" content="Bayesian active learning over Signal Temporal Logic specifications for clarifying ambiguous natural-language instructions in interactive robot planning.">
   <meta property="og:title" content="Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning"/>
-  <meta property="og:description" content="BAL treats robot clarification as Bayesian active learning over grounded STL specifications: higher task success with fewer clarification rounds across six LLMs, four domains, and a 30-person user study."/>
-  <meta property="og:url" content="https://romanlee6.github.io/bal-robot-planning/"/>
+  <meta property="og:description" content="BAL treats robot clarification as Bayesian active learning over grounded STL task specifications, guiding LLMs to ask more informative questions."/>
+  <meta property="og:url" content="https://romanlee6.github.io/bal.github.io/"/>
   <meta property="og:image" content="static/images/og_banner.jpg"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
@@ -43,11 +43,12 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning</h1>
           <div class="is-size-5 publication-authors">
+            <!-- TODO: author homepage links -->
             <span class="author-block"><a href="https://www.huao-li.com/" target="_blank">Huao Li</a><sup>1</sup>,</span>
-            <span class="author-block">Carson Sobolewski<sup>1</sup>,</span>
-            <span class="author-block">Augustinos Saravanos<sup>1</sup>,</span>
-            <span class="author-block">William Tan<sup>2</sup>,</span>
-            <span class="author-block">John Karigiannis<sup>2</sup>,</span>
+            <span class="author-block"><a href="#" target="_blank">Carson Sobolewski</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="#" target="_blank">Augustinos Saravanos</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="#" target="_blank">William Tan</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="#" target="_blank">John Karigiannis</a><sup>2</sup>,</span>
             <span class="author-block"><a href="https://chuchu.mit.edu/" target="_blank">Chuchu Fan</a><sup>1</sup></span>
           </div>
 
@@ -56,13 +57,21 @@
             <span class="author-block"><sup>2</sup>GE Vernova</span>
             <br>
             <span class="author-block venue">CoRL 2026</span>
+            <br>
+            <span class="author-block venue-sub">Human-Robot Dialogue Workshop, IROS 2026</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
+              <!-- TODO: CoRL 2026 paper link -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper (CoRL)</span>
+                </a>
+              </span>
               <span class="link-block">
                 <a href="static/pdfs/paper.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Workshop Paper (IROS)</span>
                 </a>
               </span>
               <!-- TODO: fill in arXiv id -->
@@ -130,26 +139,32 @@
     <div class="columns is-multiline takeaways">
       <div class="column is-half">
         <div class="takeaway">
-          <p class="takeaway-num">91&ndash;93%</p>
-          <p><b>Higher success, fewer questions.</b> On Panda manipulation BAL succeeds on 91&ndash;93% of tasks with every one of six base LLMs, typically in 2&ndash;3 clarification rounds versus up to 6 for LLM-driven dialogue.</p>
+          <p class="takeaway-head"><i class="fas fa-question-circle"></i> More informative questions</p>
+          <p>Casting clarification as Bayesian active learning turns dialogue into information gathering: each question is chosen to maximize expected information gain about the user's intent. BAL generally achieves higher task success with fewer clarification rounds than letting the LLM drive the conversation.</p>
         </div>
       </div>
       <div class="column is-half">
         <div class="takeaway">
-          <p class="takeaway-num">2&ndash;5&times;</p>
-          <p><b>Planner alone is not enough.</b> On City navigation, adding a formal planner to LLM clarification (LM+P) <i>hurts</i>: the solver faithfully executes a drifted spec. BAL reaches 42&ndash;67% vs. 8&ndash;25% for LM+P.</p>
+          <p class="takeaway-head"><i class="fas fa-project-diagram"></i> Beyond what the LLM proposes</p>
+          <p>Because queries are selected in a learned STL embedding space, the robot can ask about plausible specifications the LLM never generated, and it maintains a posterior over candidates instead of committing early to a single LLM-generated formula.</p>
         </div>
       </div>
       <div class="column is-half">
         <div class="takeaway">
-          <p class="takeaway-num">Auto-stop</p>
-          <p><b>BAL knows when it is done.</b> When agents decide for themselves when to stop, LLM baselines quit early from overconfidence (success drops to ~40&ndash;50%); BAL's entropy-based stop keeps ~90% success.</p>
+          <p class="takeaway-head"><i class="fas fa-balance-scale"></i> Less overconfident LLMs</p>
+          <p>LLMs tend toward overconfidence and sycophancy, which can end clarification prematurely. External uncertainty estimation gives the robot an explicit signal for when clarification is still needed.</p>
         </div>
       </div>
       <div class="column is-half">
         <div class="takeaway">
-          <p class="takeaway-num">Small &gt; large</p>
-          <p><b>Structure beats scale.</b> BAL on small, fast models (GPT-5.4-mini, Gemini-3.1-Flash-Lite) matches or beats larger reasoning models at lower wall-clock cost. Results hold with 30 real users and on a Unitree Go2 in two real sites.</p>
+          <p class="takeaway-head"><i class="fas fa-microchip"></i> Helps smaller models</p>
+          <p>BAL shifts much of the reasoning burden to its neuro-symbolic components: the LLM handles semantic interpretation and dialogue, while the probabilistic model and formal planner handle uncertainty, query selection, and planning. Smaller models close the gap with larger reasoning models at lower cost.</p>
+        </div>
+      </div>
+      <div class="column is-full">
+        <div class="takeaway">
+          <p class="takeaway-head"><i class="fas fa-check-double"></i> Verifiable and model-agnostic</p>
+          <p>Representing intent as grounded STL lets a formal planner verify the result. Gains are consistent across six base LLMs, are supported by a user study with real participants, and transfer to a quadruped robot in two real-world sites.</p>
         </div>
       </div>
     </div>
@@ -164,7 +179,7 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <div class="publication-video">
-            <!-- TODO: replace VIDEO_ID with the YouTube id of the ~3 min overview video -->
+            <!-- TODO: replace VIDEO_ID with the YouTube id of the overview video -->
             <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0"
               allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
@@ -207,7 +222,7 @@
             <source src="static/videos/demo_school.mp4" type="video/mp4">
           </video>
           <p class="demo-title">School (real world)</p>
-          <p class="demo-caption">Indoor academic building. BAL: 90% success, 3.5 rounds.</p>
+          <p class="demo-caption">Indoor academic environment, Unitree Go2. <!-- TODO: clip description --></p>
         </div>
       </div>
       <div class="column is-half">
@@ -216,7 +231,7 @@
             <source src="static/videos/demo_factory.mp4" type="video/mp4">
           </video>
           <p class="demo-title">Factory (real world)</p>
-          <p class="demo-caption">Industrial floor. BAL: 90% success, 2.9 rounds, zero collisions.</p>
+          <p class="demo-caption">Industrial environment, Unitree Go2. <!-- TODO: clip description --></p>
         </div>
       </div>
       <div class="column is-half">
@@ -225,7 +240,7 @@
             <source src="static/videos/demo_panda.mp4" type="video/mp4">
           </video>
           <p class="demo-title">Franka Panda (simulation)</p>
-          <p class="demo-caption">Tabletop reach-and-avoid over 14 objects, planned with STL-robustness trajectory optimization.</p>
+          <p class="demo-caption">Tabletop manipulation: reach specified objects while avoiding unsafe ones. <!-- TODO: clip description --></p>
         </div>
       </div>
       <div class="column is-half">
@@ -234,7 +249,7 @@
             <source src="static/videos/demo_city.mp4" type="video/mp4">
           </video>
           <p class="demo-title">City (simulation)</p>
-          <p class="demo-caption">OpenStreetMap navigation with 40 landmarks and look-alike names, solved as LTL on a product automaton.</p>
+          <p class="demo-caption">City-scale navigation over OpenStreetMap landmarks. <!-- TODO: clip description --></p>
         </div>
       </div>
     </div>
@@ -284,11 +299,11 @@
     <div class="columns is-vcentered result-figs">
       <div class="column is-7">
         <img src="static/images/fig_auto_vs_human.png" alt="Success rate and rounds under human-approval vs auto-stop on Panda">
-        <p class="fig-caption"><b>Stopping criteria (Panda).</b> Under auto-stop, LLM baselines stop after ~2 rounds and lose 25&ndash;35 points of success. BAL spends a few more rounds until its posterior converges, and keeps ~90% success.</p>
+        <p class="fig-caption"><b>Human-approval vs. auto-stop (Panda).</b> BAL maintains high task success under auto-stop, while LLM-based baselines terminate earlier but suffer from substantially lower success rates.</p>
       </div>
       <div class="column is-5">
         <img src="static/images/fig_pareto.png" alt="Pareto plot of success vs time cost across methods and base models">
-        <p class="fig-caption"><b>Cost vs. performance.</b> BAL with small models sits in the top-left: higher success at lower wall-clock time than larger reasoning models used directly.</p>
+        <p class="fig-caption"><b>Cost vs. performance.</b> Trade-off between time cost and performance. BAL works best with smaller models near the top-left corner.</p>
       </div>
     </div>
 
@@ -339,6 +354,7 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
+    <!-- TODO: final BibTeX -->
     <pre><code>@inproceedings{li2026bal,
   title     = {Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning},
   author    = {Li, Huao and Sobolewski, Carson and Saravanos, Augustinos and Tan, William and Karigiannis, John and Fan, Chuchu},

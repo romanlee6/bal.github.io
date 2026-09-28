@@ -174,3 +174,12 @@ body {
 @media screen and (max-width: 768px) {
   .publication-title { font-size: 1.8rem !important; }
 }
+.venue-sub { color: #666; font-size: 1rem; }
+.takeaway-head {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2f8a66;
+  margin-bottom: .4rem;
+}
+.takeaway-head i { margin-right: .35rem; }

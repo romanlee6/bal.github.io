@@ -1,6 +1,6 @@
 # BAL project page
 
-Project page for *Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning* (CoRL 2026).
+Project page for *Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning* (CoRL 2026; Human-Robot Dialogue Workshop, IROS 2026).
 Served by GitHub Pages from the `main` branch root.
 
 ## Adding videos
