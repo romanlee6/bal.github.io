@@ -139,20 +139,6 @@ body {
 /* ---------- BAL page additions ---------- */
 .venue { font-weight: bold; color: #555; margin-top: .4rem; }
 
-.takeaway {
-  height: 100%;
-  padding: 1.25rem 1.4rem;
-  border-radius: 10px;
-  background: #f5f7fa;
-  border-left: 4px solid #3aa37a;
-}
-.takeaway-num {
-  font-family: 'Google Sans', sans-serif;
-  font-size: 1.7rem;
-  font-weight: bold;
-  color: #2f8a66;
-  margin-bottom: .35rem;
-}
 
 .demo-card video, .env-grid img, .result-figs img {
   width: 100%;
@@ -175,11 +161,10 @@ body {
   .publication-title { font-size: 1.8rem !important; }
 }
 .venue-sub { color: #666; font-size: 1rem; }
-.takeaway-head {
-  font-family: 'Google Sans', sans-serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #2f8a66;
-  margin-bottom: .4rem;
-}
-.takeaway-head i { margin-right: .35rem; }
+.claim-icon { color: #2f8a66; margin-right: .3rem; }
+.claim-block { margin-top: 2.5rem; }
+.env-grid .fig-caption { text-align: center; }
+.env-grid img { aspect-ratio: 4 / 3; object-fit: cover; }
+.pareto-img { max-width: 360px; margin: 0 auto; }
+.results-table { table-layout: fixed; }
+.results-table th:first-child, .results-table td:first-child { width: 19%; }

@@ -43,12 +43,11 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning</h1>
           <div class="is-size-5 publication-authors">
-            <!-- TODO: author homepage links -->
-            <span class="author-block"><a href="https://www.huao-li.com/" target="_blank">Huao Li</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="#" target="_blank">Carson Sobolewski</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="#" target="_blank">Augustinos Saravanos</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="#" target="_blank">William Tan</a><sup>2</sup>,</span>
-            <span class="author-block"><a href="#" target="_blank">John Karigiannis</a><sup>2</sup>,</span>
+                        <span class="author-block"><a href="https://www.huao-li.com/" target="_blank">Huao Li</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://csobolew.github.io/" target="_blank">Carson Sobolewski</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://asaravanos.github.io/" target="_blank">Augustinos Saravanos</a><sup>1</sup>,</span>
+            <span class="author-block">William Tan<sup>2</sup>,</span>
+            <span class="author-block">John Karigiannis<sup>2</sup>,</span>
             <span class="author-block"><a href="https://chuchu.mit.edu/" target="_blank">Chuchu Fan</a><sup>1</sup></span>
           </div>
 
@@ -63,32 +62,10 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- TODO: CoRL 2026 paper link -->
+              <!-- TODO: arXiv link -->
               <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper (CoRL)</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="static/pdfs/paper.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Workshop Paper (IROS)</span>
-                </a>
-              </span>
-              <!-- TODO: fill in arXiv id -->
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
-                </a>
-              </span>
-              <!-- TODO: fill in code repo -->
-              <span class="link-block">
-                <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
-                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#video" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span>
                 </a>
               </span>
             </div>
@@ -124,7 +101,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Interactive robot planning requires robots to infer and execute human intentions from natural language instructions that are often ambiguous, incomplete, or underspecified. Although large language models (LLMs) provide a powerful interface for clarification, relying on the generative model to drive a multi-turn conversation can introduce systematic failures. We propose a Bayesian framework that treats clarification as an active learning problem over grounded Signal Temporal Logic (STL) task specifications. Our method uses LLMs to initialize candidate formal specifications and translate informative contrasts into natural-language clarification questions, while Bayesian optimization maintains uncertainty estimates over user intent and selects queries that maximize information gain. Because queries are selected in a learned STL embedding space, the system can also ask about plausible specifications that the LLM did not propose. After convergence, the inferred STL specification is passed to a formal planner to synthesize a verifiable robot trajectory. Across four simulated and real-world task domains, our approach generally achieves higher task satisfaction and requires fewer clarification rounds than LLM baselines, while helping smaller models close the performance gap against larger reasoning models.
+            Interactive robot planning requires robots to infer and execute human intentions from natural language instructions that are often <b>ambiguous, incomplete, or underspecified</b>. Although large language models (LLMs) provide a powerful interface for clarification, relying on the generative model to drive a multi-turn conversation can introduce systematic failures. We propose a <b>Bayesian framework</b> that treats clarification as an <b>active learning problem over grounded Signal Temporal Logic (STL) task specifications</b>. Our method uses LLMs to initialize candidate formal specifications and translate informative contrasts into natural-language clarification questions, while Bayesian optimization maintains uncertainty estimates over user intent and selects queries that <b>maximize information gain</b>. Because queries are selected in a <b>learned STL embedding space</b>, the system can also ask about <b>plausible specifications that the LLM did not propose</b>. After convergence, the inferred STL specification is passed to a formal planner to synthesize a <b>verifiable robot trajectory</b>. Across four simulated and real-world task domains, our approach generally achieves <b>higher task satisfaction</b> and requires <b>fewer clarification rounds</b> than LLM baselines, while <b>helping smaller models close the performance gap</b> against larger reasoning models.
           </p>
         </div>
       </div>
@@ -132,47 +109,8 @@
   </div>
 </section>
 
-<!-- ============================== Takeaways ============================== -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Key Takeaways</h2>
-    <div class="columns is-multiline takeaways">
-      <div class="column is-half">
-        <div class="takeaway">
-          <p class="takeaway-head"><i class="fas fa-question-circle"></i> More informative questions</p>
-          <p>Casting clarification as Bayesian active learning turns dialogue into information gathering: each question is chosen to maximize expected information gain about the user's intent. BAL generally achieves higher task success with fewer clarification rounds than letting the LLM drive the conversation.</p>
-        </div>
-      </div>
-      <div class="column is-half">
-        <div class="takeaway">
-          <p class="takeaway-head"><i class="fas fa-project-diagram"></i> Beyond what the LLM proposes</p>
-          <p>Because queries are selected in a learned STL embedding space, the robot can ask about plausible specifications the LLM never generated, and it maintains a posterior over candidates instead of committing early to a single LLM-generated formula.</p>
-        </div>
-      </div>
-      <div class="column is-half">
-        <div class="takeaway">
-          <p class="takeaway-head"><i class="fas fa-balance-scale"></i> Less overconfident LLMs</p>
-          <p>LLMs tend toward overconfidence and sycophancy, which can end clarification prematurely. External uncertainty estimation gives the robot an explicit signal for when clarification is still needed.</p>
-        </div>
-      </div>
-      <div class="column is-half">
-        <div class="takeaway">
-          <p class="takeaway-head"><i class="fas fa-microchip"></i> Helps smaller models</p>
-          <p>BAL shifts much of the reasoning burden to its neuro-symbolic components: the LLM handles semantic interpretation and dialogue, while the probabilistic model and formal planner handle uncertainty, query selection, and planning. Smaller models close the gap with larger reasoning models at lower cost.</p>
-        </div>
-      </div>
-      <div class="column is-full">
-        <div class="takeaway">
-          <p class="takeaway-head"><i class="fas fa-check-double"></i> Verifiable and model-agnostic</p>
-          <p>Representing intent as grounded STL lets a formal planner verify the result. Gains are consistent across six base LLMs, are supported by a user study with real participants, and transfer to a quadruped robot in two real-world sites.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============================== Video presentation ============================== -->
-<section class="hero is-small is-light" id="video">
+<section class="hero is-small" id="video">
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3 has-text-centered">Video</h2>
@@ -185,25 +123,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== Method ============================== -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Method</h2>
-    <div class="content has-text-justified">
-      <p>
-        Given an ambiguous instruction such as <i>&ldquo;Go to Tom's office&rdquo;</i>, BAL maintains a posterior over which formal specification the user actually means, rather than committing to a single LLM translation.
-      </p>
-      <ol>
-        <li><b>Propose.</b> An LLM reads the instruction and the grounded scene, then proposes candidate STL specifications with prior utility estimates.</li>
-        <li><b>Embed.</b> A grammar VAE maps formulas into a 16-D latent space where similar specifications cluster together, and any latent point decodes to a syntactically valid formula.</li>
-        <li><b>Model.</b> A Gaussian process over the latent space tracks the mean and uncertainty of how well each specification matches the user's intent.</li>
-        <li><b>Ask.</b> An information-gain acquisition picks a challenger to contrast with the current best spec. The challenger can be a <i>novel formula the LLM never proposed</i>, sampled directly in latent space. The LLM phrases the contrast as a natural-language question.</li>
-        <li><b>Update &amp; plan.</b> The user's answer becomes noisy utility observations, and the GP is refit. The best spec is sent to a formal planner (MILP, gradient-based, or B&uuml;chi-product) that returns a verifiable trajectory.</li>
-      </ol>
     </div>
   </div>
 </section>
@@ -261,9 +180,16 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3">Results</h2>
 
-    <h3 class="title is-4">Simulation: six LLMs, two domains</h3>
+    <h3 class="title is-4"><i class="fas fa-question-circle claim-icon"></i> BAL asks more informative questions</h3>
     <div class="content has-text-justified">
-      <p>Success rate (%, &uarr;) and clarification rounds (&darr;), mean &plusmn; SE. The same base LLM, user proxy, and context are used for every method. <b>LM</b> = LLM clarification that outputs a plan directly; <b>LM+P</b> = LLM clarification, then translation to STL for the same planner BAL uses.</p>
+      <p>
+        Choosing each question to maximize expected information gain about the user's intent lets BAL recover that intent more efficiently than letting the LLM run the dialogue.
+        Across both simulation domains and all six base LLMs, <b>BAL consistently outperforms the baselines in success rate</b> and <b>generally requires fewer clarification rounds</b>.
+        The pattern holds for every base model, so the gains come from the formal specification representation, Bayesian intent modeling, and active query selection, not from a particular LLM.
+      </p>
+      <p class="fig-caption">Success rate (%, &uarr;) and rounds of clarification (&darr;), mean &plusmn; standard error. Bold marks the per-domain best.
+        <b>LM</b>: LLM clarification that outputs the plan directly. <b>LM+P</b>: LLM clarification, then translation to STL for the same planner BAL uses.
+        All methods share the base LLM, simulated user, and context.</p>
     </div>
     <div class="table-container">
       <table class="table is-fullwidth is-narrow is-hoverable results-table">
@@ -272,12 +198,12 @@
           <tr><th>BAL</th><th>LM</th><th>LM+P</th><th>BAL</th><th>LM</th><th>LM+P</th></tr>
         </thead>
         <tbody>
-          <tr><td>GPT-5.4</td><td class="best">91.1</td><td>48.9</td><td>82.2</td><td class="best">62.5</td><td>29.2</td><td>20.8</td></tr>
-          <tr><td>GPT-5.4-mini</td><td class="best">93.2</td><td>64.4</td><td>86.7</td><td class="best">64.7</td><td>20.8</td><td>12.5</td></tr>
-          <tr><td>Claude-Opus-4-6</td><td class="best">91.1</td><td>64.4</td><td>82.2</td><td class="best">50.0</td><td>29.2</td><td>20.8</td></tr>
-          <tr><td>Claude-Sonnet-4-6</td><td class="best">91.1</td><td>73.3</td><td>86.7</td><td class="best">41.7</td><td>29.2</td><td>8.3</td></tr>
-          <tr><td>Gemini-3.1-Pro</td><td class="best">91.1</td><td>82.2</td><td class="best">91.1</td><td class="best">54.2</td><td>33.3</td><td>25.0</td></tr>
-          <tr><td>Gemini-3.1-Flash-Lite</td><td class="best">93.3</td><td>64.4</td><td>91.1</td><td class="best">66.7</td><td>29.2</td><td>12.5</td></tr>
+          <tr><td>GPT-5.4</td><td class="best">91.1&plusmn;4.2</td><td>48.9&plusmn;7.5</td><td>82.2&plusmn;5.7</td><td class="best">62.5&plusmn;9.9</td><td>29.2&plusmn;9.3</td><td>20.8&plusmn;8.3</td></tr>
+          <tr><td>GPT-5.4-mini</td><td class="best">93.2&plusmn;3.8</td><td>64.4&plusmn;7.1</td><td>86.7&plusmn;5.1</td><td class="best">64.7&plusmn;11.6</td><td>20.8&plusmn;8.3</td><td>12.5&plusmn;6.8</td></tr>
+          <tr><td>Claude-Opus-4-6</td><td class="best">91.1&plusmn;4.2</td><td>64.4&plusmn;7.1</td><td>82.2&plusmn;5.7</td><td class="best">50.0&plusmn;10.2</td><td>29.2&plusmn;9.3</td><td>20.8&plusmn;8.3</td></tr>
+          <tr><td>Claude-Sonnet-4-6</td><td class="best">91.1&plusmn;4.2</td><td>73.3&plusmn;6.6</td><td>86.7&plusmn;5.1</td><td class="best">41.7&plusmn;10.1</td><td>29.2&plusmn;9.3</td><td>8.3&plusmn;5.6</td></tr>
+          <tr><td>Gemini-3.1-Pro</td><td class="best">91.1&plusmn;4.2</td><td>82.2&plusmn;5.7</td><td class="best">91.1&plusmn;4.2</td><td class="best">54.2&plusmn;10.2</td><td>33.3&plusmn;9.6</td><td>25.0&plusmn;8.8</td></tr>
+          <tr><td>Gemini-3.1-Flash-Lite</td><td class="best">93.3&plusmn;3.7</td><td>64.4&plusmn;7.1</td><td>91.1&plusmn;4.2</td><td class="best">66.7&plusmn;9.6</td><td>29.2&plusmn;9.3</td><td>12.5&plusmn;6.8</td></tr>
         </tbody>
       </table>
       <table class="table is-fullwidth is-narrow is-hoverable results-table">
@@ -286,52 +212,53 @@
           <tr><th>BAL</th><th>LM</th><th>LM+P</th><th>BAL</th><th>LM</th><th>LM+P</th></tr>
         </thead>
         <tbody>
-          <tr><td>GPT-5.4</td><td class="best">2.33</td><td>6.16</td><td>3.51</td><td class="best">6.54</td><td>9.14</td><td>9.17</td></tr>
-          <tr><td>GPT-5.4-mini</td><td class="best">2.09</td><td>5.40</td><td>3.24</td><td class="best">6.46</td><td>9.42</td><td>9.53</td></tr>
-          <tr><td>Claude-Opus-4-6</td><td class="best">2.93</td><td>4.69</td><td>3.38</td><td class="best">7.25</td><td>8.75</td><td>8.94</td></tr>
-          <tr><td>Claude-Sonnet-4-6</td><td>3.09</td><td>4.49</td><td class="best">3.02</td><td class="best">8.11</td><td>8.67</td><td>9.39</td></tr>
-          <tr><td>Gemini-3.1-Pro</td><td class="best">2.36</td><td>3.47</td><td>3.16</td><td class="best">7.78</td><td>8.83</td><td>9.06</td></tr>
-          <tr><td>Gemini-3.1-Flash-Lite</td><td class="best">2.44</td><td>5.42</td><td>3.13</td><td class="best">6.14</td><td>8.83</td><td>9.53</td></tr>
+          <tr><td>GPT-5.4</td><td class="best">2.33&plusmn;0.41</td><td>6.16&plusmn;0.62</td><td>3.51&plusmn;0.54</td><td class="best">6.54&plusmn;0.57</td><td>9.14&plusmn;0.31</td><td>9.17&plusmn;0.30</td></tr>
+          <tr><td>GPT-5.4-mini</td><td class="best">2.09&plusmn;0.36</td><td>5.40&plusmn;0.58</td><td>3.24&plusmn;0.51</td><td class="best">6.46&plusmn;0.70</td><td>9.42&plusmn;0.30</td><td>9.53&plusmn;0.28</td></tr>
+          <tr><td>Claude-Opus-4-6</td><td class="best">2.93&plusmn;0.47</td><td>4.69&plusmn;0.62</td><td>3.38&plusmn;0.52</td><td class="best">7.25&plusmn;0.53</td><td>8.75&plusmn;0.39</td><td>8.94&plusmn;0.41</td></tr>
+          <tr><td>Claude-Sonnet-4-6</td><td>3.09&plusmn;0.48</td><td>4.49&plusmn;0.60</td><td class="best">3.02&plusmn;0.50</td><td class="best">8.11&plusmn;0.49</td><td>8.67&plusmn;0.39</td><td>9.39&plusmn;0.33</td></tr>
+          <tr><td>Gemini-3.1-Pro</td><td class="best">2.36&plusmn;0.42</td><td>3.47&plusmn;0.49</td><td>3.16&plusmn;0.45</td><td class="best">7.78&plusmn;0.56</td><td>8.83&plusmn;0.39</td><td>9.06&plusmn;0.34</td></tr>
+          <tr><td>Gemini-3.1-Flash-Lite</td><td class="best">2.44&plusmn;0.35</td><td>5.42&plusmn;0.62</td><td>3.13&plusmn;0.47</td><td class="best">6.14&plusmn;0.59</td><td>8.83&plusmn;0.42</td><td>9.53&plusmn;0.23</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="columns is-vcentered result-figs">
-      <div class="column is-7">
-        <img src="static/images/fig_auto_vs_human.png" alt="Success rate and rounds under human-approval vs auto-stop on Panda">
-        <p class="fig-caption"><b>Human-approval vs. auto-stop (Panda).</b> BAL maintains high task success under auto-stop, while LLM-based baselines terminate earlier but suffer from substantially lower success rates.</p>
+    <div class="columns is-vcentered claim-block">
+      <div class="column is-6">
+        <h3 class="title is-4"><i class="fas fa-balance-scale claim-icon"></i> BAL makes LLMs less overconfident</h3>
+        <div class="content">
+          <p>
+            With <b>auto-stop</b>, the robot decides when clarification is complete instead of asking for approval every round.
+            BAL stops once its posterior entropy plateaus. The LLM baselines stop when they believe the intent is clear.
+          </p>
+          <p>
+            The LLM-based methods lose substantial success under auto-stop. They end with both low success and few rounds, which shows they <b>often stop too early because they are overconfident</b> in their intent estimates.
+            BAL <b>keeps a similar level of performance</b>, using a few more rounds so its posterior uncertainty can converge.
+            External uncertainty estimation gives an <b>explicit signal for when clarification is still needed</b>.
+          </p>
+        </div>
       </div>
-      <div class="column is-5">
-        <img src="static/images/fig_pareto.png" alt="Pareto plot of success vs time cost across methods and base models">
-        <p class="fig-caption"><b>Cost vs. performance.</b> Trade-off between time cost and performance. BAL works best with smaller models near the top-left corner.</p>
+      <div class="column is-6">
+        <img src="static/images/fig_auto_vs_human.png" alt="Success rate and clarification rounds under human-approval vs auto-stop on Panda">
+        <p class="fig-caption">Human-approval vs. auto-stop on Panda. BAL maintains high task success under auto-stop, while LLM-based baselines terminate earlier but suffer from substantially lower success rates.</p>
       </div>
     </div>
 
-    <div class="columns">
-      <div class="column is-half">
-        <h3 class="title is-4">User study (N = 30, City)</h3>
-        <table class="table is-fullwidth is-narrow results-table">
-          <thead><tr><th>Method</th><th>Success &uarr;</th><th>Rounds &darr;</th></tr></thead>
-          <tbody>
-            <tr><td><b>BAL</b></td><td class="best">0.65 &plusmn; 0.07</td><td class="best">3.67 &plusmn; 0.21</td></tr>
-            <tr><td>LM</td><td>0.48 &plusmn; 0.07</td><td>4.38 &plusmn; 0.14</td></tr>
-            <tr><td>LM+P</td><td>0.37 &plusmn; 0.06</td><td>4.25 &plusmn; 0.15</td></tr>
-          </tbody>
-        </table>
-        <p class="fig-caption">Within-subject, Latin-square counterbalanced. Repeated-measures ANOVA: success F(2,58)=6.10, p=.004; rounds F(2,58)=8.78, p=.001.</p>
+    <div class="columns is-vcentered claim-block">
+      <div class="column is-6">
+        <h3 class="title is-4"><i class="fas fa-microchip claim-icon"></i> BAL helps smaller models</h3>
+        <div class="content">
+          <p>
+            Latent-space inference and Bayesian optimization add computation, but more efficient clarification often offsets it, while larger reasoning models depend on long reasoning traces, tool calls, and repeated dialogue.
+            As a result, <b>BAL with a smaller model can match or outperform direct clarification with a larger model at lower wall-clock cost</b>.
+          </p>
+          <p>
+            BAL moves much of the reasoning burden to its <b>neuro-symbolic components</b>. The LLM handles semantic interpretation and dialogue. The probabilistic model and formal planner handle uncertainty estimation, query selection, and planning.
+          </p>
+        </div>
       </div>
-      <div class="column is-half">
-        <h3 class="title is-4">Real world (Unitree Go2)</h3>
-        <table class="table is-fullwidth is-narrow results-table">
-          <thead><tr><th>Site</th><th>Metric</th><th>BAL</th><th>LM</th><th>LM+P</th></tr></thead>
-          <tbody>
-            <tr><td rowspan="2">School</td><td>Success %</td><td class="best">90</td><td>60</td><td>80</td></tr>
-            <tr><td>Rounds</td><td class="best">3.5</td><td>6.3</td><td class="best">3.5</td></tr>
-            <tr><td rowspan="2">Factory</td><td>Success %</td><td class="best">90</td><td>80</td><td class="best">90</td></tr>
-            <tr><td>Rounds</td><td class="best">2.9</td><td>4.3</td><td>4.1</td></tr>
-          </tbody>
-        </table>
-        <p class="fig-caption">10 ambiguous instructions per site, Gemini-3.1-Flash-Lite, budget B=10. All approved tasks executed with zero collisions.</p>
+      <div class="column is-6">
+        <img class="pareto-img" src="static/images/fig_pareto.png" alt="Pareto plot of success vs time cost across methods and base models">
+        <p class="fig-caption">Trade-off between time cost and performance. BAL works best with smaller models near the top-left corner.</p>
       </div>
     </div>
   </div>
@@ -341,11 +268,11 @@
 <section class="section is-light hero">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Environments</h2>
-    <div class="columns is-multiline env-grid">
-      <div class="column is-half"><img src="static/images/env4_panda.jpg" alt="Franka Panda tabletop"><p class="fig-caption"><b>Franka Panda</b>: 7-DoF tabletop manipulation (sim)</p></div>
-      <div class="column is-half"><img src="static/images/env2_city.jpg" alt="City map"><p class="fig-caption"><b>City</b>: OpenStreetMap navigation, 40 landmarks (sim)</p></div>
-      <div class="column is-half"><img src="static/images/env1_school.jpg" alt="School scan"><p class="fig-caption"><b>School</b>: indoor academic site (real)</p></div>
-      <div class="column is-half"><img src="static/images/env3_factory.jpg" alt="Factory scan"><p class="fig-caption"><b>Factory</b>: industrial site (real)</p></div>
+    <div class="columns is-mobile is-multiline env-grid">
+      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env4_panda.jpg" alt="Franka Panda tabletop"><p class="fig-caption"><b>Franka Panda</b> (sim)</p></div>
+      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env2_city.jpg" alt="City map"><p class="fig-caption"><b>City</b> (sim)</p></div>
+      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env1_school.jpg" alt="School scan"><p class="fig-caption"><b>School</b> (real)</p></div>
+      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env3_factory.jpg" alt="Factory scan"><p class="fig-caption"><b>Factory</b> (real)</p></div>
     </div>
   </div>
 </section>

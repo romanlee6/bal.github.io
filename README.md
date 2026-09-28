@@ -5,7 +5,7 @@
 
 *CoRL 2026* · *Human-Robot Dialogue Workshop, IROS 2026*
 
-[Project page](https://www.huao-li.com/bal.github.io/) · [Paper](#) · [arXiv](#) · [Code](#) · [Video](#)
+[Project page](https://www.huao-li.com/bal.github.io/) · [arXiv](#)
 
 ![BAL framework overview](static/images/new_pipeline.png)
 
@@ -20,13 +20,11 @@ Natural-language instructions to robots are often ambiguous, incomplete, or unde
 - A **Gaussian process** over that space tracks uncertainty about the user's intent, and an **information-gain acquisition** chooses which question to ask. The question can be about specifications the LLM never proposed.
 - After clarification, the inferred specification goes to a **formal planner**, which synthesizes a verifiable robot trajectory.
 
-## Takeaways
+## Key results
 
-- **More informative questions.** Choosing each question to maximize information gain generally gives higher task success with fewer clarification rounds than LLM-driven dialogue.
-- **Beyond what the LLM proposes.** Searching the learned STL embedding space lets the robot ask about plausible specifications the LLM never generated, instead of committing early to one LLM formula.
-- **Less overconfident clarification.** External uncertainty estimation gives an explicit signal for when clarification is still needed. This counters LLM overconfidence and sycophancy.
-- **Helps smaller models.** Uncertainty estimation, query selection, and planning are handled by the probabilistic model and formal planner. This lets smaller models close the gap with larger reasoning models.
-- **Evaluated broadly.** The paper evaluates BAL with six LLMs in two simulated domains (Franka Panda manipulation, City navigation), in a user study, and on a Unitree Go2 quadruped in two real-world sites.
+- **BAL asks more informative questions.** Across both simulation domains and six base LLMs, BAL consistently outperforms LLM clarification baselines in success rate and generally needs fewer clarification rounds.
+- **BAL makes LLMs less overconfident.** When the agent decides for itself when to stop, the LLM baselines often stop too early and lose substantial success. BAL keeps a similar level of performance, because its posterior uncertainty tells it when clarification is still needed.
+- **BAL helps smaller models.** Most of the reasoning burden moves to the probabilistic model and formal planner. With BAL, a smaller model can match or outperform direct clarification with a larger model, at lower wall-clock cost.
 
 ## Citation
 
