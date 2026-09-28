@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Bayesian active learning over Signal Temporal Logic specifications for clarifying ambiguous natural-language instructions in interactive robot planning.">
+  <meta property="og:title" content="Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning"/>
+  <meta property="og:description" content="BAL treats robot clarification as Bayesian active learning over grounded STL specifications: higher task success with fewer clarification rounds across six LLMs, four domains, and a 30-person user study."/>
+  <meta property="og:url" content="https://romanlee6.github.io/bal-robot-planning/"/>
+  <meta property="og:image" content="static/images/og_banner.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning">
+  <meta name="twitter:description" content="Clarification as Bayesian active learning over grounded STL specifications.">
+  <meta name="twitter:image" content="static/images/og_banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="Bayesian active learning, clarification, human-robot interaction, signal temporal logic, LLM, robot planning, intent disambiguation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>BAL: Intent Disambiguation for Robot Planning</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+<!-- ============================== Title ============================== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://www.huao-li.com/" target="_blank">Huao Li</a><sup>1</sup>,</span>
+            <span class="author-block">Carson Sobolewski<sup>1</sup>,</span>
+            <span class="author-block">Augustinos Saravanos<sup>1</sup>,</span>
+            <span class="author-block">William Tan<sup>2</sup>,</span>
+            <span class="author-block">John Karigiannis<sup>2</sup>,</span>
+            <span class="author-block"><a href="https://chuchu.mit.edu/" target="_blank">Chuchu Fan</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Massachusetts Institute of Technology,&nbsp;</span>
+            <span class="author-block"><sup>2</sup>GE Vernova</span>
+            <br>
+            <span class="author-block venue">CoRL 2026</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="static/pdfs/paper.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                </a>
+              </span>
+              <!-- TODO: fill in arXiv id -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+                </a>
+              </span>
+              <!-- TODO: fill in code repo -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark" title="Coming soon">
+                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#video" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== Teaser ============================== -->
+<!-- Swap the <img> for a short (15-30 s) muted, looping teaser clip once available:
+     <video autoplay muted loop playsinline poster="static/images/new_pipeline.png">
+       <source src="static/videos/teaser.mp4" type="video/mp4"></video> -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/new_pipeline.png" alt="BAL framework overview: LLM proposes STL candidates, grammar VAE embeds them, a Gaussian process models utility, and an acquisition function selects clarification questions before a formal planner executes the inferred specification."/>
+      <h2 class="subtitle has-text-centered">
+        <b>BAL</b> treats clarification as <b>Bayesian active learning over grounded STL task specifications</b>.
+        The LLM proposes candidate intents and phrases questions; a Gaussian process over a learned STL latent space decides <i>what to ask</i>
+        and <i>when to stop</i>; a formal planner executes the result.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== Abstract ============================== -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Interactive robot planning requires robots to infer and execute human intentions from natural language instructions that are often ambiguous, incomplete, or underspecified. Although large language models (LLMs) provide a powerful interface for clarification, relying on the generative model to drive a multi-turn conversation can introduce systematic failures. We propose a Bayesian framework that treats clarification as an active learning problem over grounded Signal Temporal Logic (STL) task specifications. Our method uses LLMs to initialize candidate formal specifications and translate informative contrasts into natural-language clarification questions, while Bayesian optimization maintains uncertainty estimates over user intent and selects queries that maximize information gain. Because queries are selected in a learned STL embedding space, the system can also ask about plausible specifications that the LLM did not propose. After convergence, the inferred STL specification is passed to a formal planner to synthesize a verifiable robot trajectory. Across four simulated and real-world task domains, our approach generally achieves higher task satisfaction and requires fewer clarification rounds than LLM baselines, while helping smaller models close the performance gap against larger reasoning models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== Takeaways ============================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Key Takeaways</h2>
+    <div class="columns is-multiline takeaways">
+      <div class="column is-half">
+        <div class="takeaway">
+          <p class="takeaway-num">91&ndash;93%</p>
+          <p><b>Higher success, fewer questions.</b> On Panda manipulation BAL succeeds on 91&ndash;93% of tasks with every one of six base LLMs, typically in 2typically in 2&ndash;3 clarification rounds versus 3.5&ndash;6 for LLM-driven dialoguendash;3 clarification rounds versus up to 6 for LLM-driven dialogue.</p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="takeaway">
+          <p class="takeaway-num">2&ndash;5&times;</p>
+          <p><b>Planner alone is not enough.</b> On City navigation, adding a formal planner to LLM clarification (LM+P) <i>hurts</i>: the solver faithfully executes a drifted spec. BAL reaches 42&ndash;67% vs. 8&ndash;25% for LM+P.</p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="takeaway">
+          <p class="takeaway-num">Auto-stop</p>
+          <p><b>BAL knows when it is done.</b> When agents decide for themselves when to stop, LLM baselines quit early from overconfidence (success drops to ~40&ndash;50%); BAL's entropy-based stop keeps ~90% success.</p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="takeaway">
+          <p class="takeaway-num">Small &gt; large</p>
+          <p><b>Structure beats scale.</b> BAL on small, fast models (GPT-5.4-mini, Gemini-3.1-Flash-Lite) matches or beats larger reasoning models at lower wall-clock cost. Results hold with 30 real users and on a Unitree Go2 in two real sites.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== Video presentation ============================== -->
+<section class="hero is-small is-light" id="video">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Video</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-video">
+            <!-- TODO: replace VIDEO_ID with the YouTube id of the ~3 min overview video -->
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== Method ============================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method</h2>
+    <div class="content has-text-justified">
+      <p>
+        Given an ambiguous instruction such as <i>&ldquo;Go to Tom's office&rdquo;</i>, BAL maintains a posterior over which formal specification the user actually means, rather than committing to a single LLM translation.
+      </p>
+      <ol>
+        <li><b>Propose.</b> An LLM reads the instruction and the grounded scene, then proposes candidate STL specifications with prior utility estimates.</li>
+        <li><b>Embed.</b> A grammar VAE maps formulas into a 16-D latent space where similar specifications cluster together, and any latent point decodes to a syntactically valid formula.</li>
+        <li><b>Model.</b> A Gaussian process over the latent space tracks the mean and uncertainty of how well each specification matches the user's intent.</li>
+        <li><b>Ask.</b> An information-gain acquisition picks a challenger to contrast with the current best spec. The challenger can be a <i>novel formula the LLM never proposed</i>, sampled directly in latent space. The LLM phrases the contrast as a natural-language question.</li>
+        <li><b>Update &amp; plan.</b> The user's answer becomes noisy utility observations, and the GP is refit. The best spec is sent to a formal planner (MILP, gradient-based, or B&uuml;chi-product) that returns a verifiable trajectory.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== Demo clips ============================== -->
+<!-- Drop short clips (20-45 s each, H.264 mp4, < 10 MB) into static/videos/ with these names.
+     The poster image shows until the file exists. -->
+<section class="section is-light hero">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Demos</h2>
+    <p class="content">A Unitree Go2 quadruped runs the full pipeline in two real sites that we scanned into metric-semantic maps. A MILP planner generates waypoints; MPC with a CBF-QP safety filter tracks them.</p>
+    <div class="columns is-multiline">
+      <div class="column is-half">
+        <div class="demo-card">
+          <video controls muted playsinline preload="none" poster="static/images/env1_school.jpg">
+            <source src="static/videos/demo_school.mp4" type="video/mp4">
+          </video>
+          <p class="demo-title">School (real world)</p>
+          <p class="demo-caption">Indoor academic building. BAL: 90% success, 3.5 rounds.</p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="demo-card">
+          <video controls muted playsinline preload="none" poster="static/images/env3_factory.jpg">
+            <source src="static/videos/demo_factory.mp4" type="video/mp4">
+          </video>
+          <p class="demo-title">Factory (real world)</p>
+          <p class="demo-caption">Industrial floor. BAL: 90% success, 2.9 rounds, zero collisions.</p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="demo-card">
+          <video controls muted playsinline preload="none" poster="static/images/env4_panda.jpg">
+            <source src="static/videos/demo_panda.mp4" type="video/mp4">
+          </video>
+          <p class="demo-title">Franka Panda (simulation)</p>
+          <p class="demo-caption">Tabletop reach-and-avoid over 14 objects, planned with STL-robustness trajectory optimization.</p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="demo-card">
+          <video controls muted playsinline preload="none" poster="static/images/env2_city.jpg">
+            <source src="static/videos/demo_city.mp4" type="video/mp4">
+          </video>
+          <p class="demo-title">City (simulation)</p>
+          <p class="demo-caption">OpenStreetMap navigation with 40 landmarks and look-alike names, solved as LTL on a product automaton.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== Results ============================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Results</h2>
+
+    <h3 class="title is-4">Simulation: six LLMs, two domains</h3>
+    <div class="content has-text-justified">
+      <p>Success rate (%, &uarr;) and clarification rounds (&darr;), mean &plusmn; SE. The same base LLM, user proxy, and context are used for every method. <b>LM</b> = LLM clarification that outputs a plan directly; <b>LM+P</b> = LLM clarification, then translation to STL for the same planner BAL uses.</p>
+    </div>
+    <div class="table-container">
+      <table class="table is-fullwidth is-narrow is-hoverable results-table">
+        <thead>
+          <tr><th rowspan="2">Base model</th><th colspan="3" class="has-text-centered">Panda &mdash; success</th><th colspan="3" class="has-text-centered">City &mdash; success</th></tr>
+          <tr><th>BAL</th><th>LM</th><th>LM+P</th><th>BAL</th><th>LM</th><th>LM+P</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GPT-5.4</td><td class="best">91.1</td><td>48.9</td><td>82.2</td><td class="best">62.5</td><td>29.2</td><td>20.8</td></tr>
+          <tr><td>GPT-5.4-mini</td><td class="best">93.2</td><td>64.4</td><td>86.7</td><td class="best">64.7</td><td>20.8</td><td>12.5</td></tr>
+          <tr><td>Claude-Opus-4-6</td><td class="best">91.1</td><td>64.4</td><td>82.2</td><td class="best">50.0</td><td>29.2</td><td>20.8</td></tr>
+          <tr><td>Claude-Sonnet-4-6</td><td class="best">91.1</td><td>73.3</td><td>86.7</td><td class="best">41.7</td><td>29.2</td><td>8.3</td></tr>
+          <tr><td>Gemini-3.1-Pro</td><td class="best">91.1</td><td>82.2</td><td class="best">91.1</td><td class="best">54.2</td><td>33.3</td><td>25.0</td></tr>
+          <tr><td>Gemini-3.1-Flash-Lite</td><td class="best">93.3</td><td>64.4</td><td>91.1</td><td class="best">66.7</td><td>29.2</td><td>12.5</td></tr>
+        </tbody>
+      </table>
+      <table class="table is-fullwidth is-narrow is-hoverable results-table">
+        <thead>
+          <tr><th rowspan="2">Base model</th><th colspan="3" class="has-text-centered">Panda &mdash; rounds</th><th colspan="3" class="has-text-centered">City &mdash; rounds</th></tr>
+          <tr><th>BAL</th><th>LM</th><th>LM+P</th><th>BAL</th><th>LM</th><th>LM+P</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GPT-5.4</td><td class="best">2.33</td><td>6.16</td><td>3.51</td><td class="best">6.54</td><td>9.14</td><td>9.17</td></tr>
+          <tr><td>GPT-5.4-mini</td><td class="best">2.09</td><td>5.40</td><td>3.24</td><td class="best">6.46</td><td>9.42</td><td>9.53</td></tr>
+          <tr><td>Claude-Opus-4-6</td><td class="best">2.93</td><td>4.69</td><td>3.38</td><td class="best">7.25</td><td>8.75</td><td>8.94</td></tr>
+          <tr><td>Claude-Sonnet-4-6</td><td>3.09</td><td>4.49</td><td class="best">3.02</td><td class="best">8.11</td><td>8.67</td><td>9.39</td></tr>
+          <tr><td>Gemini-3.1-Pro</td><td class="best">2.36</td><td>3.47</td><td>3.16</td><td class="best">7.78</td><td>8.83</td><td>9.06</td></tr>
+          <tr><td>Gemini-3.1-Flash-Lite</td><td class="best">2.44</td><td>5.42</td><td>3.13</td><td class="best">6.14</td><td>8.83</td><td>9.53</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="columns is-vcentered result-figs">
+      <div class="column is-7">
+        <img src="static/images/fig_auto_vs_human.png" alt="Success rate and rounds under human-approval vs auto-stop on Panda">
+        <p class="fig-caption"><b>Stopping criteria (Panda).</b> Under auto-stop, LLM baselines stop after ~2 rounds and lose 25&ndash;35 points of success. BAL spends a few more rounds until its posterior converges, and keeps ~90% success.</p>
+      </div>
+      <div class="column is-5">
+        <img src="static/images/fig_pareto.png" alt="Pareto plot of success vs time cost across methods and base models">
+        <p class="fig-caption"><b>Cost vs. performance.</b> BAL with small models sits in the top-left: higher success at lower wall-clock time than larger reasoning models used directly.</p>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-half">
+        <h3 class="title is-4">User study (N = 30, City)</h3>
+        <table class="table is-fullwidth is-narrow results-table">
+          <thead><tr><th>Method</th><th>Success &uarr;</th><th>Rounds &darr;</th></tr></thead>
+          <tbody>
+            <tr><td><b>BAL</b></td><td class="best">0.65 &plusmn; 0.07</td><td class="best">3.67 &plusmn; 0.21</td></tr>
+            <tr><td>LM</td><td>0.48 &plusmn; 0.07</td><td>4.38 &plusmn; 0.14</td></tr>
+            <tr><td>LM+P</td><td>0.37 &plusmn; 0.06</td><td>4.25 &plusmn; 0.15</td></tr>
+          </tbody>
+        </table>
+        <p class="fig-caption">Within-subject, Latin-square counterbalanced. Repeated-measures ANOVA: success F(2,58)=6.10, p=.004; rounds F(2,58)=8.78, p=.001.</p>
+      </div>
+      <div class="column is-half">
+        <h3 class="title is-4">Real world (Unitree Go2)</h3>
+        <table class="table is-fullwidth is-narrow results-table">
+          <thead><tr><th>Site</th><th>Metric</th><th>BAL</th><th>LM</th><th>LM+P</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="2">School</td><td>Success %</td><td class="best">90</td><td>60</td><td>80</td></tr>
+            <tr><td>Rounds</td><td class="best">3.5</td><td>6.3</td><td class="best">3.5</td></tr>
+            <tr><td rowspan="2">Factory</td><td>Success %</td><td class="best">90</td><td>80</td><td class="best">90</td></tr>
+            <tr><td>Rounds</td><td class="best">2.9</td><td>4.3</td><td>4.1</td></tr>
+          </tbody>
+        </table>
+        <p class="fig-caption">10 ambiguous instructions per site, Gemini-3.1-Flash-Lite, budget B=10. All approved tasks executed with zero collisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== Environments ============================== -->
+<section class="section is-light hero">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Environments</h2>
+    <div class="columns is-multiline env-grid">
+      <div class="column is-half"><img src="static/images/env4_panda.jpg" alt="Franka Panda tabletop"><p class="fig-caption"><b>Franka Panda</b>: 7-DoF tabletop manipulation (sim)</p></div>
+      <div class="column is-half"><img src="static/images/env2_city.jpg" alt="City map"><p class="fig-caption"><b>City</b>: OpenStreetMap navigation, 40 landmarks (sim)</p></div>
+      <div class="column is-half"><img src="static/images/env1_school.jpg" alt="School scan"><p class="fig-caption"><b>School</b>: indoor academic site (real)</p></div>
+      <div class="column is-half"><img src="static/images/env3_factory.jpg" alt="Factory scan"><p class="fig-caption"><b>Factory</b>: industrial site (real)</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== BibTeX ============================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{li2026bal,
+  title     = {Bayesian Active Learning for Intent Disambiguation in Interactive Robot Planning},
+  author    = {Li, Huao and Sobolewski, Carson and Saravanos, Augustinos and Tan, William and Karigiannis, John and Fan, Chuchu},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This work is supported by the MIT x GE Vernova Energy and Climate Alliance.
+            <br>This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>, adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
