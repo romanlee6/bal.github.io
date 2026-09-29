@@ -5,7 +5,7 @@
 
 *CoRL 2026* · *Human-Robot Dialogue Workshop, IROS 2026*
 
-[Project page](https://www.huao-li.com/bal.github.io/) · [arXiv](#)
+[Project page](https://www.huao-li.com/bal.github.io/) · [arXiv](https://arxiv.org/abs/2609.34270) · Code (coming soon)
 
 ![BAL framework overview](static/images/new_pipeline.png)
 

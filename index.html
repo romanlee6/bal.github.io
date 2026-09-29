@@ -62,10 +62,15 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- TODO: arXiv link -->
               <span class="link-block">
-                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/abs/2609.34270" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+                </a>
+              </span>
+              <!-- TODO: code repo link -->
+              <span class="link-block">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark" title="Code coming soon">
+                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
                 </a>
               </span>
             </div>
@@ -109,74 +114,21 @@
   </div>
 </section>
 
-<!-- ============================== Video presentation ============================== -->
-<section class="hero is-small" id="video">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Video</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <div class="publication-video">
-            <!-- TODO: replace VIDEO_ID with the YouTube id of the overview video -->
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0"
-              allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== Demo clips ============================== -->
-<!-- Drop short clips (20-45 s each, H.264 mp4, < 10 MB) into static/videos/ with these names.
-     The poster image shows until the file exists. -->
-<section class="section is-light hero">
+<!-- ============================== Environments ============================== -->
+<section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Demos</h2>
-    <p class="content">A Unitree Go2 quadruped runs the full pipeline in two real sites that we scanned into metric-semantic maps. A MILP planner generates waypoints; MPC with a CBF-QP safety filter tracks them.</p>
-    <div class="columns is-multiline">
-      <div class="column is-half">
-        <div class="demo-card">
-          <video controls muted playsinline preload="none" poster="static/images/env1_school.jpg">
-            <source src="static/videos/demo_school.mp4" type="video/mp4">
-          </video>
-          <p class="demo-title">School (real world)</p>
-          <p class="demo-caption">Indoor academic environment, Unitree Go2. <!-- TODO: clip description --></p>
-        </div>
-      </div>
-      <div class="column is-half">
-        <div class="demo-card">
-          <video controls muted playsinline preload="none" poster="static/images/env3_factory.jpg">
-            <source src="static/videos/demo_factory.mp4" type="video/mp4">
-          </video>
-          <p class="demo-title">Factory (real world)</p>
-          <p class="demo-caption">Industrial environment, Unitree Go2. <!-- TODO: clip description --></p>
-        </div>
-      </div>
-      <div class="column is-half">
-        <div class="demo-card">
-          <video controls muted playsinline preload="none" poster="static/images/env4_panda.jpg">
-            <source src="static/videos/demo_panda.mp4" type="video/mp4">
-          </video>
-          <p class="demo-title">Franka Panda (simulation)</p>
-          <p class="demo-caption">Tabletop manipulation: reach specified objects while avoiding unsafe ones. <!-- TODO: clip description --></p>
-        </div>
-      </div>
-      <div class="column is-half">
-        <div class="demo-card">
-          <video controls muted playsinline preload="none" poster="static/images/env2_city.jpg">
-            <source src="static/videos/demo_city.mp4" type="video/mp4">
-          </video>
-          <p class="demo-title">City (simulation)</p>
-          <p class="demo-caption">City-scale navigation over OpenStreetMap landmarks. <!-- TODO: clip description --></p>
-        </div>
-      </div>
+    <h2 class="title is-3">Environments</h2>
+    <div class="columns is-mobile is-multiline env-grid">
+      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env4_panda.jpg" alt="Franka Panda tabletop"><p class="fig-caption"><b>Franka Panda</b> (sim)</p></div>
+      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env2_city.jpg" alt="City map"><p class="fig-caption"><b>City</b> (sim)</p></div>
+      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env1_school.jpg" alt="School scan"><p class="fig-caption"><b>School</b> (real)</p></div>
+      <div class="column is-3-tablet is-6-mobile"><img src="static/images/factory.png" alt="Factory scan"><p class="fig-caption"><b>Factory</b> (real)</p></div>
     </div>
   </div>
 </section>
 
 <!-- ============================== Results ============================== -->
-<section class="section">
+<section class="section is-light hero">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Results</h2>
 
@@ -260,19 +212,6 @@
         <img class="pareto-img" src="static/images/fig_pareto.png" alt="Pareto plot of success vs time cost across methods and base models">
         <p class="fig-caption">Trade-off between time cost and performance. BAL works best with smaller models near the top-left corner.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== Environments ============================== -->
-<section class="section is-light hero">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Environments</h2>
-    <div class="columns is-mobile is-multiline env-grid">
-      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env4_panda.jpg" alt="Franka Panda tabletop"><p class="fig-caption"><b>Franka Panda</b> (sim)</p></div>
-      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env2_city.jpg" alt="City map"><p class="fig-caption"><b>City</b> (sim)</p></div>
-      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env1_school.jpg" alt="School scan"><p class="fig-caption"><b>School</b> (real)</p></div>
-      <div class="column is-3-tablet is-6-mobile"><img src="static/images/env3_factory.jpg" alt="Factory scan"><p class="fig-caption"><b>Factory</b> (real)</p></div>
     </div>
   </div>
 </section>

@@ -140,16 +140,14 @@ body {
 .venue { font-weight: bold; color: #555; margin-top: .4rem; }
 
 
-.demo-card video, .env-grid img, .result-figs img {
+.env-grid img, .result-figs img {
   width: 100%;
   border-radius: 8px;
   background: #000;
   display: block;
 }
 .env-grid img, .result-figs img { background: none; }
-.demo-card video { aspect-ratio: 16 / 9; object-fit: contain; }
-.demo-title { font-family: 'Google Sans', sans-serif; font-weight: bold; margin-top: .5rem; }
-.demo-caption, .fig-caption { font-size: .9rem; color: #555; margin-top: .35rem; }
+.fig-caption { font-size: .9rem; color: #555; margin-top: .35rem; }
 
 .results-table { font-size: .9rem; margin-bottom: 1.5rem !important; }
 .results-table td, .results-table th { text-align: center !important; vertical-align: middle !important; }
