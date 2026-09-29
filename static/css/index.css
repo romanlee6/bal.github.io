@@ -166,3 +166,15 @@ body {
 .pareto-img { max-width: 360px; margin: 0 auto; }
 .results-table { table-layout: fixed; }
 .results-table th:first-child, .results-table td:first-child { width: 19%; }
+.spotlight-badge {
+  display: inline-block;
+  margin-left: .4rem;
+  padding: .1rem .6rem;
+  border-radius: 999px;
+  background: #2f8a66;
+  color: #fff;
+  font-size: .85rem;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.spotlight-badge i { font-size: .75rem; margin-right: .15rem; }
